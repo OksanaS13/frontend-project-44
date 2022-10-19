@@ -1,6 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
+  "type": "module",
   "description": "[![Actions Status](https://github.com/OksanaS13/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/OksanaS13/frontend-project-44/actions)",
   "main": "index.js",
   "scripts": {
@@ -10,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/OksanaS13/frontend-project-44.git"
   },
-  "author": "",
+  "author": "Oksana Soloviova",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/OksanaS13/frontend-project-44/issues"
