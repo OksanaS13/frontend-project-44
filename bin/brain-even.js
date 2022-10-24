@@ -24,7 +24,8 @@ let flag = true;
 
 // eslint-disable-next-line no-restricted-syntax
 for (const number of numbers) {
-  const currentAnswer = readlineSync.question(`Question: ${number} `);
+  const currentAnswer = readlineSync.question(`Question: ${number}
+Your answer: `);
   const currentResult = isCorrectAnswer(number, currentAnswer);
   console.log(currentResult);
   if (currentResult !== 'Correct!') {
