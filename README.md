@@ -6,4 +6,4 @@
 
 Brain-even
 
-<script id="asciicast-qAp1ac1oWKT5kaBC4l1Sq04Xl" src="https://asciinema.org/a/qAp1ac1oWKT5kaBC4l1Sq04Xl.js" async></script>
+https://asciinema.org/a/qAp1ac1oWKT5kaBC4l1Sq04Xl
