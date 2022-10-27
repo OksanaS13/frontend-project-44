@@ -7,8 +7,6 @@ const name = readlineSync.question('May I have your name? ');
 console.log(`Hello, ${name}!`);
 console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-const numbers = [15, 6, 7];
-
 const isCorrectAnswer = (number, answer) => {
   let result;
   const correctAnswer = (number % 2 === 0) ? 'yes' : 'no';
@@ -23,7 +21,8 @@ const isCorrectAnswer = (number, answer) => {
 let flag = true;
 
 // eslint-disable-next-line no-restricted-syntax
-for (const number of numbers) {
+for (let i = 0; i < 3; i += 1) {
+  const number = Math.floor((Math.random() * 100) + 1);
   const currentAnswer = readlineSync.question(`Question: ${number}
 Your answer: `);
   const currentResult = isCorrectAnswer(number, currentAnswer);
