@@ -27,8 +27,8 @@ const brainGcd = () => {
   const roundsCount = 3;
 
   for (let i = 0; i < roundsCount; i += 1) {
-    const numberOne = Math.floor(Math.random() * 100);
-    const numberTwo = Math.floor(Math.random() * 100);
+    const numberOne = Math.floor((Math.random() * 100) + 1);
+    const numberTwo = Math.floor((Math.random() * 100) + 1);
     const question = `${numberOne} ${numberTwo}`;
     const correctAnswer = findOutCorrectAnswer(numberOne, numberTwo);
     const result = brainGames(question, correctAnswer);
