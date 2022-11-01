@@ -6,6 +6,9 @@ const brainPrime = () => {
 
   const findOutCorrectAnswer = (number) => {
     let divisorsCount = 0;
+    if (number === 1) {
+      divisorsCount += 1;
+    }
     for (let i = 2; i <= Math.sqrt(number); i += 1) {
       if (number % i === 0) {
         divisorsCount += 1;
