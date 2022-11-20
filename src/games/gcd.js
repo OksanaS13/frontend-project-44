@@ -8,6 +8,9 @@ const playBrainGcd = () => {
   const findOutCorrectAnswer = (numberOne, numberTwo) => {
     const commonDivisors = [];
     const smallestNumber = Math.min(numberOne, numberTwo);
+    if (smallestNumber === 0) {
+      return '-Infinity';
+    }
     for (let i = 1; i <= smallestNumber; i += 1) {
       if (numberOne % i === 0) {
         if (numberTwo % i === 0) {
