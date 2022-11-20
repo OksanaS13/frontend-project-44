@@ -22,13 +22,9 @@ const playBrainProgression = () => {
 
   for (let i = 1; i <= roundsCount; i += 1) {
     const firstNumber = getRandomNumber();
-    console.log(`firstNumber: ${firstNumber}`);
     const progressionLength = getRandomNumber(10, 5);
-    console.log(`progressionLength: ${progressionLength}`);
     const step = getRandomNumber(5, 2);
-    console.log(`step: ${step}`);
     const hiddenElem = getRandomNumber(progressionLength);
-    console.log(`hiddenElem: ${hiddenElem}`);
 
     const progression = createProgression(firstNumber, progressionLength, step, hiddenElem);
     const question = progression[1];
