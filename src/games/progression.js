@@ -1,9 +1,10 @@
-import { startTheGame, brainGames } from '../index.js';
+import { startTheGame, playBrainGames } from '../index.js';
+import getRandomNumber from '../utils.js';
 
 const playBrainProgression = () => {
   const instruction = 'What number is missing in the progression?';
 
-  const name = startTheGame(instruction);
+  const [name, roundsCount] = startTheGame(instruction);
 
   const createProgression = (firstNumber, progressionLength, step, hiddenElem) => {
     const progression = [firstNumber];
@@ -19,29 +20,23 @@ const playBrainProgression = () => {
     return result;
   };
 
-  let flag = true;
-  const roundsCount = 3;
-
-  for (let i = 0; i < roundsCount; i += 1) {
-    const firstNumber = Math.floor(Math.random() * 100);
-    const progressionLength = Math.floor((Math.random() * 10) + 5);
-    const step = Math.floor((Math.random() * 5) + 2);
-    const hiddenElem = Math.floor(Math.random() * progressionLength);
+  for (let i = 1; i <= roundsCount; i += 1) {
+    const firstNumber = getRandomNumber();
+    console.log(`firstNumber: ${firstNumber}`);
+    const progressionLength = getRandomNumber(10, 5);
+    console.log(`progressionLength: ${progressionLength}`);
+    const step = getRandomNumber(5, 2);
+    console.log(`step: ${step}`);
+    const hiddenElem = getRandomNumber(progressionLength);
+    console.log(`hiddenElem: ${hiddenElem}`);
 
     const progression = createProgression(firstNumber, progressionLength, step, hiddenElem);
     const question = progression[1];
     const correctAnswer = progression[0][hiddenElem];
-    const result = brainGames(question, correctAnswer);
-    console.log(result);
-    if (result !== 'Correct!') {
-      flag = false;
-      console.log(`Let's try again, ${name}!`);
+    const flag = playBrainGames(question, correctAnswer, i, name);
+    if (flag === false) {
       break;
     }
-  }
-
-  if (flag === true) {
-    console.log(`Congratulations, ${name}!`);
   }
 };
 
