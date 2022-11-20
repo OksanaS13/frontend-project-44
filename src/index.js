@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import readlineSync from 'readline-sync';
 
 const startTheGame = (instruction) => {
