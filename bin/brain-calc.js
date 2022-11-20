@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable default-case */
 
-import brainCalc from '../games/calc.js';
+import playBrainCalc from '../src/games/calc.js';
 
-brainCalc();
+playBrainCalc();
