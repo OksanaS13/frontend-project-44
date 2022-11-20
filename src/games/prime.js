@@ -1,8 +1,9 @@
-import { startTheGame, brainGames } from '../index.js';
+import { startTheGame, playBrainGames } from '../index.js';
+import getRandomNumber from '../utils.js';
 
 const playBrainPrime = () => {
   const instruction = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  const name = startTheGame(instruction);
+  const [name, roundsCount] = startTheGame(instruction);
 
   const findOutCorrectAnswer = (number) => {
     let divisorsCount = 0;
@@ -18,23 +19,13 @@ const playBrainPrime = () => {
     return (divisorsCount === 0) ? 'yes' : 'no';
   };
 
-  let flag = true;
-  const roundsCount = 3;
-
-  for (let i = 0; i < roundsCount; i += 1) {
-    const question = Math.floor((Math.random() * 100) + 1);
+  for (let i = 1; i <= roundsCount; i += 1) {
+    const question = getRandomNumber(100, 1);
     const correctAnswer = findOutCorrectAnswer(question);
-    const result = brainGames(question, correctAnswer);
-    console.log(result);
-    if (result !== 'Correct!') {
-      flag = false;
-      console.log(`Let's try again, ${name}!`);
+    const flag = playBrainGames(question, correctAnswer, i, name);
+    if (flag === false) {
       break;
     }
-  }
-
-  if (flag === true) {
-    console.log(`Congratulations, ${name}!`);
   }
 };
 
