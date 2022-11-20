@@ -1,51 +1,36 @@
-import { startTheGame, brainGames } from '../index.js';
+import { startTheGame, playBrainGames } from '../index.js';
+import getRandomNumber from '../utils.js';
 
 const playBrainCalc = () => {
   const instruction = 'What is the result of the expression?';
 
-  const name = startTheGame(instruction);
+  const [name, roundsCount] = startTheGame(instruction);
 
   const operations = ['+', '-', '*'];
 
   const findOutCorrectAnswer = (numberOne, numberTwo, operator) => {
-    let correctAnswer;
-
     switch (operator) {
       case '+':
-        correctAnswer = numberOne + numberTwo;
-        break;
+        return numberOne + numberTwo;
       case '-':
-        correctAnswer = numberOne - numberTwo;
-        break;
+        return numberOne - numberTwo;
       case '*':
-        correctAnswer = numberOne * numberTwo;
-        break;
+        return numberOne * numberTwo;
       default:
         throw new Error(`Unknown operator: '${operator}'!`);
     }
-    return correctAnswer;
   };
 
-  let flag = true;
-  const roundsCount = 3;
-
-  for (let i = 0; i < roundsCount; i += 1) {
-    const numberOne = Math.floor(Math.random() * 20);
-    const numberTwo = Math.floor(Math.random() * 20);
-    const operator = operations[Math.floor(Math.random() * operations.length)];
+  for (let i = 1; i <= roundsCount; i += 1) {
+    const numberOne = getRandomNumber(20);
+    const numberTwo = getRandomNumber(20);
+    const operator = operations[getRandomNumber(operations.length)];
     const question = `${numberOne} ${operator} ${numberTwo}`;
     const correctAnswer = findOutCorrectAnswer(numberOne, numberTwo, operator);
-    const result = brainGames(question, correctAnswer);
-    console.log(result);
-    if (result !== 'Correct!') {
-      flag = false;
-      console.log(`Let's try again, ${name}!`);
+    const flag = playBrainGames(question, correctAnswer, i, name);
+    if (flag === false) {
       break;
     }
-  }
-
-  if (flag === true) {
-    console.log(`Congratulations, ${name}!`);
   }
 };
 
