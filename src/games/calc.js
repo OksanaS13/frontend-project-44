@@ -1,37 +1,35 @@
-import { startTheGame, playBrainGames } from '../index.js';
+import playBrainGames from '../index.js';
 import getRandomNumber from '../utils.js';
 
 const playBrainCalc = () => {
   const instruction = 'What is the result of the expression?';
 
-  const [name, roundsCount] = startTheGame(instruction);
+  const playRound = () => {
+    const numberOne = getRandomNumber(20);
+    const numberTwo = getRandomNumber(20);
+    const operations = ['+', '-', '*'];
+    const operator = operations[getRandomNumber(operations.length)];
+    const question = `${numberOne} ${operator} ${numberTwo}`;
 
-  const operations = ['+', '-', '*'];
-
-  const findOutCorrectAnswer = (numberOne, numberTwo, operator) => {
+    let correctAnswer;
     switch (operator) {
       case '+':
-        return numberOne + numberTwo;
+        correctAnswer = numberOne + numberTwo;
+        break;
       case '-':
-        return numberOne - numberTwo;
+        correctAnswer = numberOne - numberTwo;
+        break;
       case '*':
-        return numberOne * numberTwo;
+        correctAnswer = numberOne * numberTwo;
+        break;
       default:
         throw new Error(`Unknown operator: '${operator}'!`);
     }
+
+    return [question, String(correctAnswer)];
   };
 
-  for (let i = 1; i <= roundsCount; i += 1) {
-    const numberOne = getRandomNumber(20);
-    const numberTwo = getRandomNumber(20);
-    const operator = operations[getRandomNumber(operations.length)];
-    const question = `${numberOne} ${operator} ${numberTwo}`;
-    const correctAnswer = findOutCorrectAnswer(numberOne, numberTwo, operator);
-    const flag = playBrainGames(question, correctAnswer, i, name);
-    if (flag === false) {
-      break;
-    }
-  }
+  playBrainGames(instruction, playRound);
 };
 
 export default playBrainCalc;
