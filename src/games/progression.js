@@ -4,27 +4,38 @@ import getRandomNumber from '../utils.js';
 const playBrainProgression = () => {
   const instruction = 'What number is missing in the progression?';
 
-  const playRound = () => {
+  const prepareRound = () => {
     const firstNumber = getRandomNumber();
-    const progressionLength = getRandomNumber(10, 5);
-    const step = getRandomNumber(5, 2);
-    const hiddenElem = getRandomNumber(progressionLength);
+    const progressionLength = getRandomNumber(5, 10);
+    const step = getRandomNumber(2, 5);
+    const hiddenElem = getRandomNumber(0, progressionLength);
 
-    const progression = [firstNumber];
-    let nextNumber = firstNumber;
-    for (let i = 1; i < progressionLength; i += 1) {
-      nextNumber += step;
-      progression.push(nextNumber);
-    }
-    const clonProgression = progression.slice();
-    clonProgression[hiddenElem] = '..';
-    const question = clonProgression.join(' ');
+    const createAProgression = (length, start, incr) => {
+      const progression = [start];
+      let nextNumber = firstNumber;
+      for (let i = 1; i < length; i += 1) {
+        nextNumber += incr;
+        progression.push(nextNumber);
+      }
+      return progression;
+    };
+
+    const progression = createAProgression(progressionLength, firstNumber, step);
+
+    const createAQuestion = (sequence, num) => {
+      const clonProgression = sequence.slice();
+      clonProgression[num] = '..';
+      return clonProgression.join(' ');
+    };
+
+    const question = createAQuestion(progression, hiddenElem);
+
     const correctAnswer = progression[hiddenElem];
 
     return [question, String(correctAnswer)];
   };
 
-  playBrainGames(instruction, playRound);
+  playBrainGames(instruction, prepareRound);
 };
 
 export default playBrainProgression;
