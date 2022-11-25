@@ -4,32 +4,31 @@ import getRandomNumber from '../utils.js';
 const playBrainCalc = () => {
   const instruction = 'What is the result of the expression?';
 
-  const playRound = () => {
-    const numberOne = getRandomNumber(20);
-    const numberTwo = getRandomNumber(20);
+  const prepareRound = () => {
+    const numberOne = getRandomNumber(0, 20);
+    const numberTwo = getRandomNumber(0, 20);
     const operations = ['+', '-', '*'];
-    const operator = operations[getRandomNumber(operations.length)];
+    const operator = operations[getRandomNumber(0, operations.length)];
     const question = `${numberOne} ${operator} ${numberTwo}`;
 
-    let correctAnswer;
-    switch (operator) {
-      case '+':
-        correctAnswer = numberOne + numberTwo;
-        break;
-      case '-':
-        correctAnswer = numberOne - numberTwo;
-        break;
-      case '*':
-        correctAnswer = numberOne * numberTwo;
-        break;
-      default:
-        throw new Error(`Unknown operator: '${operator}'!`);
-    }
+    const getTheResultOfExpression = (symbol, numOne, numTwo) => {
+      switch (symbol) {
+        case '+':
+          return numOne + numTwo;
+        case '-':
+          return numOne - numTwo;
+        case '*':
+          return numOne * numTwo;
+        default:
+          throw new Error(`Unknown operator: '${symbol}'!`);
+      }
+    };
+    const correctAnswer = getTheResultOfExpression(operator, numberOne, numberTwo);
 
     return [question, String(correctAnswer)];
   };
 
-  playBrainGames(instruction, playRound);
+  playBrainGames(instruction, prepareRound);
 };
 
 export default playBrainCalc;
