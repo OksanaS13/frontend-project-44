@@ -3,25 +3,28 @@ import getRandomNumber from '../utils.js';
 
 const playBrainPrime = () => {
   const instruction = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  const playRound = () => {
-    const question = getRandomNumber(100, 1);
+  const prepareRound = () => {
+    const question = getRandomNumber(1, 100);
 
-    let divisorsCount = 0;
-    if (question < 2) {
-      divisorsCount += 1;
-    }
-    for (let i = 2; i <= Math.sqrt(question); i += 1) {
-      if (question % i === 0) {
+    const isPrime = (number) => {
+      let divisorsCount = 0;
+      if (number < 2) {
         divisorsCount += 1;
-        break;
       }
-    }
-    const correctAnswer = (divisorsCount === 0) ? 'yes' : 'no';
+      for (let i = 2; i <= Math.sqrt(question); i += 1) {
+        if (question % i === 0) {
+          divisorsCount += 1;
+          break;
+        }
+      }
+      return divisorsCount === 0;
+    };
+    const correctAnswer = (isPrime(question)) ? 'yes' : 'no';
 
     return [question, correctAnswer];
   };
 
-  playBrainGames(instruction, playRound);
+  playBrainGames(instruction, prepareRound);
 };
 
 export default playBrainPrime;
