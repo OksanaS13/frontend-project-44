@@ -3,18 +3,15 @@ import getRandomNumber from '../utils.js';
 
 const playBrainEven = () => {
   const instruction = 'Answer "yes" if the number is even, otherwise answer "no".';
-  const playRound = () => {
-    const question = getRandomNumber(100, 1);
-    let correctAnswer;
-    if (question % 2 === 0) {
-      correctAnswer = 'yes';
-    } else {
-      correctAnswer = 'no';
-    }
+  const prepareRound = () => {
+    const question = getRandomNumber(1, 100);
+
+    const isEven = (number) => (number % 2 === 0);
+    const correctAnswer = (isEven(question)) ? 'yes' : 'no';
     return [question, correctAnswer];
   };
 
-  playBrainGames(instruction, playRound);
+  playBrainGames(instruction, prepareRound);
 };
 
 export default playBrainEven;
