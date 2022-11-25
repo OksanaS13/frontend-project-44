@@ -3,30 +3,32 @@ import getRandomNumber from '../utils.js';
 
 const playBrainGcd = () => {
   const instruction = 'Find the greatest common divisor of given numbers.';
-  const playRound = () => {
+  const prepareRound = () => {
     const numberOne = getRandomNumber();
     const numberTwo = getRandomNumber();
     const question = `${numberOne} ${numberTwo}`;
 
-    let correctAnswer;
-    const commonDivisors = [];
-    const smallestNumber = Math.min(numberOne, numberTwo);
-    if (smallestNumber === 0) {
-      correctAnswer = Math.max(numberOne, numberTwo);
-    } else {
+    const findGCD = (numOne, numTwo) => {
+      const commonDivisors = [];
+      const smallestNumber = Math.min(numOne, numTwo);
+      if (smallestNumber === 0) {
+        return Math.max(numOne, numTwo);
+      }
       for (let i = 1; i <= smallestNumber; i += 1) {
-        if (numberOne % i === 0) {
-          if (numberTwo % i === 0) {
+        if (numOne % i === 0) {
+          if (numTwo % i === 0) {
             commonDivisors.push(i);
           }
         }
       }
-      correctAnswer = Math.max(...commonDivisors);
-    }
+      return Math.max(...commonDivisors);
+    };
+    const correctAnswer = findGCD(numberOne, numberTwo);
+
     return [question, String(correctAnswer)];
   };
 
-  playBrainGames(instruction, playRound);
+  playBrainGames(instruction, prepareRound);
 };
 
 export default playBrainGcd;
