@@ -8,18 +8,16 @@ const playBrainGames = (instruction, prepareRound) => {
   const roundsCount = 3;
   for (let i = 1; i <= roundsCount; i += 1) {
     const [question, correctAnswer] = prepareRound();
-    const userAnswer = String(readlineSync.question(`Question: ${question}
-Your answer: `));
+    const userAnswer = readlineSync.question(`Question: ${question}
+Your answer: `);
     if (userAnswer === correctAnswer) {
       console.log('Correct!');
-      if (i === roundsCount) {
-        console.log(`Congratulations, ${name}!`);
-      }
     } else {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
       console.log(`Let's try again, ${name}!`);
-      break;
+      return;
     }
   }
+  console.log(`Congratulations, ${name}!`);
 };
 export default playBrainGames;
