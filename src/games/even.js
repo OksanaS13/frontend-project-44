@@ -10,9 +10,9 @@ const prepareRound = () => {
   return [question, correctAnswer];
 };
 
-const playBrainEven = () => {
-  const instruction = 'Answer "yes" if the number is even, otherwise answer "no".';
+const instruction = 'Answer "yes" if the number is even, otherwise answer "no".';
 
+const playBrainEven = () => {
   playBrainGames(instruction, prepareRound);
 };
 

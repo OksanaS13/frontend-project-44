@@ -32,9 +32,9 @@ const prepareRound = () => {
   return [question, String(correctAnswer)];
 };
 
-const playBrainProgression = () => {
-  const instruction = 'What number is missing in the progression?';
+const instruction = 'What number is missing in the progression?';
 
+const playBrainProgression = () => {
   playBrainGames(instruction, prepareRound);
 };
 

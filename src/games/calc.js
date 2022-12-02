@@ -26,9 +26,9 @@ const prepareRound = () => {
   return [question, String(correctAnswer)];
 };
 
-const playBrainCalc = () => {
-  const instruction = 'What is the result of the expression?';
+const instruction = 'What is the result of the expression?';
 
+const playBrainCalc = () => {
   playBrainGames(instruction, prepareRound);
 };
 

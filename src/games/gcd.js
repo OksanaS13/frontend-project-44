@@ -16,9 +16,9 @@ const prepareRound = () => {
   return [question, String(correctAnswer)];
 };
 
-const playBrainGcd = () => {
-  const instruction = 'Find the greatest common divisor of given numbers.';
+const instruction = 'Find the greatest common divisor of given numbers.';
 
+const playBrainGcd = () => {
   playBrainGames(instruction, prepareRound);
 };
 

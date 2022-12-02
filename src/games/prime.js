@@ -23,9 +23,9 @@ const prepareRound = () => {
   return [question, correctAnswer];
 };
 
-const playBrainPrime = () => {
-  const instruction = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const instruction = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
+const playBrainPrime = () => {
   playBrainGames(instruction, prepareRound);
 };
 
